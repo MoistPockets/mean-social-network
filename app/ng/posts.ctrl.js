@@ -3,7 +3,7 @@ angular.module('app').controller('PostsCtrl', function ($scope, PostsSvc) {
 		$scope.posts = posts
 	})
 	$scope.addPost = function () {
-		if ($scope.postBody) {
+		if ($scope.postBody && $scope.currentUser) {
 			PostsSvc.create({
 				username: 'jacja',
 				body: $scope.postBody
