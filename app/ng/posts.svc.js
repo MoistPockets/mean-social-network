@@ -5,4 +5,7 @@ angular.module('app').service('PostsSvc', function($http) {
 	this.create = function(post) {
 		return $http.post('/api/posts', post)
 	}
+	this.update = function(post) {
+		return $http.post('/api/posts/' + post._id, post)
+	}
 })

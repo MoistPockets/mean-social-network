@@ -5,11 +5,19 @@ angular.module('app').controller('PostsCtrl', function ($scope, PostsSvc) {
 	$scope.addPost = function () {
 		if ($scope.postBody && $scope.currentUser) {
 			PostsSvc.create({
-				username: 'jacja',
 				body: $scope.postBody
 			}).success(function (post) {
 				$scope.posts.unshift(post)
 				$scope.postBody = null
+			})
+		};
+	};
+	$scope.likePost = function (p) {
+		if ($scope.currentUser) {
+			p.likes.unshift($scope.currentUser._id)
+			PostsSvc.update(p).success(function (post) {
+				i = $scope.posts.map(function(x) {return x._id; }).indexOf(post._id);
+				$scope.posts[i] = post
 			})
 		};
 	};
