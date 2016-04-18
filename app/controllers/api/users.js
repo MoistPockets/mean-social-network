@@ -27,4 +27,11 @@ router.post('/api/users', function (req, res, next) {
 	})
 });
 
+router.post('/api/users/:userId', function (req, res, next) {
+	User.update({_id: req.params.userId}, req.body, function(err, user){
+		if (err) { return next(err) }
+		res.json(201, user)
+	})
+});
+
 module.exports = router

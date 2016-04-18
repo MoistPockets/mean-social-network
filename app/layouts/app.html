@@ -12,7 +12,7 @@
 			<li><a href="/#/register">Register</a></li>
 		</ul>
 		<p ng-if='currentUser' class="navbar-text navbar-right">
-		Logged in as {{currentUser.username}}
+		Logged in as <a href='#/account/{{currentUser._id}}'>{{currentUser.username}}</a>
 		</p>
 	</div>
 </div>

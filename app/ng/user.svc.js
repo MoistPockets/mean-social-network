@@ -16,9 +16,12 @@ angular.module('app').service('UserSvc', function($http) {
 	}
 	
 	svc.register = function (username, password) {
-		console.log('Rejestracja')
 		return $http.post('/api/users', {
 			username: username, password: password
 		})
+	}
+	
+	svc.edit = function (user) {
+		return $http.post('/api/users/' + user._id, user)
 	}
 })
