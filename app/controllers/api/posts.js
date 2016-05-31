@@ -2,7 +2,14 @@ var Post = require('../../models/post')
 var router = require('express').Router()
 
 router.get('/api/posts', function (req, res, next) {
-	Post.find().populate('user').exec(function (err, posts) {
+	Post.find().populate('user').populate('comments').exec(function (err, posts) {
+		if (err) {return next(err)}
+		res.json(posts)
+	})
+});
+
+router.get('/api/posts/user/:userId', function (req, res, next) {
+	Post.find({user: req.params.userId}).populate('user').exec(function (err, posts) {
 		if (err) {return next(err)}
 		res.json(posts)
 	})

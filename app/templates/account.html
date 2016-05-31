@@ -1,12 +1,21 @@
 <div class="container">
 	<form role="form">
 		<div class="form-group">
+			<div class="form-group">
+				<textarea type="text" ng-model="userDesc" placeholder="{{currentUser.description || 'Description ...'}}" class="form-control"></textarea>
+			</div>
 			<div class="input-group">
 				<input type="text" ng-model="userName" placeholder="{{currentUser.username}}" class="form-control">
 				<span class="input-group-btn">
-					<button class="btn btn-default" ng-click="editAccount()">Edit</button>
+					<button class="btn btn-default" ng-click="editAccount()">{{ 'LABEL_edit' | translate }}</button>
 				</span>
 			</div>
 		</div>
 	</form>
+	<div ng-controller="LineCtrl">
+	<canvas id="line" class="chart chart-line" chart-data="data"
+	  chart-labels="labels" chart-legend="true" chart-series="series"
+	  chart-click="onClick" >
+	</canvas> 
+	</div>
 </div>

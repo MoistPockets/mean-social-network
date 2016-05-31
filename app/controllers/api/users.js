@@ -16,7 +16,8 @@ router.get('/api/users', function (req, res, next) {
 });
 
 router.post('/api/users', function (req, res, next) {
-	var user = new User({username: req.body.username})
+	var user = new User({username: req.body.username, role: 'RegularUser'})
+	console.log(user)
 	bcrypt.hash(req.body.password, 10, function (err, hash) {
 		if (err) {return next(err)}
 		user.password = hash
@@ -28,9 +29,17 @@ router.post('/api/users', function (req, res, next) {
 });
 
 router.post('/api/users/:userId', function (req, res, next) {
+	console.log(req.body)
 	User.update({_id: req.params.userId}, req.body, function(err, user){
 		if (err) { return next(err) }
 		res.json(201, user)
+	})
+});
+
+router.get('/api/users/:userId', function (req, res, next) {
+	User.findOne({_id: req.params.userId}, function (err, user) {
+		if (err) {return next(err)}
+		res.json(user)
 	})
 });
 

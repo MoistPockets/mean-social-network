@@ -4,4 +4,5 @@ angular.module('app').config(function($routeProvider) {
 	.when('/login', {controller: 'LoginCtrl', templateUrl: 'login.html'})
 	.when('/register', {controller: 'RegisterCtrl', templateUrl: 'register.html'})
 	.when('/account/:id', {controller: 'UserAccountCtrl', templateUrl: 'account.html'})
+	.when('/user/:id', {controller: 'UserProfileCtrl', templateUrl: 'user.html'})
 })

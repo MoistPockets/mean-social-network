@@ -1,4 +1,4 @@
-angular.module('app').controller('PostsCtrl', function ($scope, PostsSvc) {
+angular.module('app').controller('PostsCtrl', function ($scope, PostsSvc, CommentsSvc) {
 	PostsSvc.fetch().success(function (posts) {
 		$scope.posts = posts
 	})
@@ -20,5 +20,14 @@ angular.module('app').controller('PostsCtrl', function ($scope, PostsSvc) {
 				$scope.posts[i] = post
 			})
 		};
+	};
+	$scope.addComment = function (p) {
+		CommentsSvc.create({
+			body: p.comment,
+			appendTo: p._id
+		}).success(function (comment) {
+			console.log(p)
+			p.comments.unshift(comment)
+		})
 	};
 });

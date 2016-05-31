@@ -1,0 +1,12 @@
+<div class="container">
+	<h3>{{ 'LABEL_user_title' | translate }} {{user.username}}</h3>
+	<p>{{user.description}}</p>
+	<ul class="list-group">
+		<li ng-repeat="post in posts | orderBy:'-date' track by post._id" class="list-group-item clearfix">
+			<span>{{post.body}}</span>
+			<div class="col-xs-12 text-left" ng-if='currentUser'>
+				<p><button  ng-click="likePost(post)" class="btn"><span class="glyphicon glyphicon-heart"></span> {{post.likes.length}}</button></p>
+			</div>
+		</li>
+	</ul>
+</div>

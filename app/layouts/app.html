@@ -2,23 +2,41 @@
 <html>
 <head>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/angular-chart.js/dist/styles.css">
 </head>
 <body ng-app="app" ng-controller='ApplicationCtrl'>
 <div class="navbar navbar-default">
 	<div class="container">
 		<ul class="nav navbar-nav">
-			<li><a href="/#/">Home</a></li>
-			<li><a href="/#/login">Login</a></li>
-			<li><a href="/#/register">Register</a></li>
+			<li><a href="/#/">{{ 'LABEL_home' | translate }}</a></li>
+			<li><a href="/#/login">{{ 'LABEL_login' | translate }}</a></li>
+			<li><a href="/#/register">{{ 'LABEL_register' | translate }}</a></li>
 		</ul>
 		<p ng-if='currentUser' class="navbar-text navbar-right">
-		Logged in as <a href='#/account/{{currentUser._id}}'>{{currentUser.username}}</a>
+		{{ 'LABEL_logged_as' | translate }} <a href='#/account/{{currentUser._id}}'>{{currentUser.username}}</a>
 		</p>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="dropdown pull-right" ng-controller="LanguageCtrl">
+				  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ 'LABEL_lang_select' | translate }}
+				  <span class="caret"></span></button>
+				  <ul class="dropdown-menu">
+					<li><a ng-click="changeLanguage('pl')">PL</a></li>
+					<li><a ng-click="changeLanguage('en')">EN</a></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div ng-view></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js"></script>
+<script src="/angular-translate/dist/angular-translate.js"></script>
+<script src="/Chart.js/dist/Chart.js"></script>
+<script src="/angular-chart.js/dist/angular-chart.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>

@@ -24,4 +24,8 @@ angular.module('app').service('UserSvc', function($http) {
 	svc.edit = function (user) {
 		return $http.post('/api/users/' + user._id, user)
 	}
+	
+	svc.find = function (id) {
+		return $http.get('/api/users/' + id)
+	}
 })
